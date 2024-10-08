@@ -1,17 +1,21 @@
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    IMPORT 
+    IMPORT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { FASTQC } from '../../modules/nf-core/fastqc/main'
-
 
 //
-// Plug-ins: Installed directly from nf-core/modules
+// SUBWORKFLOWS:
+//
+include { Trimming } from '../../subworkflows/Trimming'
+include { FastQC } from '../../subworkflows/fastqc_workflow'
+
+//
+// PLUGINS: Installed directly from nf-core/modules
 //
 include { samplesheetToList } from 'plugin/nf-schema' //used to read the sample sheet
 
@@ -21,7 +25,7 @@ workflow RNASEQ {
     ch_samplesheet
 
     main:
-    //TODO 1: Read in the samplesheet
+    // Read in the samplesheet
 
     ch_fastq = channel
         .fromSamplesheet("input")
@@ -42,6 +46,7 @@ workflow RNASEQ {
     //TODO 2: FASTQC
 
     //TODO 3: TRIMGALORE to trim the reads
+    
 
     //TODO 4: ALIGNING THE READS
 
