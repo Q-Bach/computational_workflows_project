@@ -2,7 +2,7 @@
 // Trimming
 //
 
-include { TRIMGALORE } from '../../../modules/nf-core/trimgalore/main'
+include { TRIMGALORE } from '../../modules/nf-core/trimgalore/main'
 
 workflow Trimming {
 

@@ -1,55 +1,79 @@
-Oct-08 13:57:10.338 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf
-Oct-08 13:57:10.440 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.4
-Oct-08 13:57:10.464 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/masha/.nextflow/plugins; core-plugins: nf-amazon@2.5.3,nf-azure@1.6.1,nf-cloudcache@0.4.1,nf-codecommit@0.2.1,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2-patch1,nf-tower@1.9.1,nf-wave@1.4.2-patch1
-Oct-08 13:57:10.478 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Oct-08 13:57:10.479 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Oct-08 13:57:10.482 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
-Oct-08 13:57:10.494 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Oct-08 13:57:10.557 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
-Oct-08 13:57:10.576 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [distracted_banach] DSL2 - revision: a3bfed8a00
-Oct-08 13:57:10.578 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Oct-08 13:57:10.579 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-Oct-08 13:57:10.650 [main] DEBUG nextflow.Session - Session UUID: 56d1e201-5c48-4c17-a89a-cf4049e48454
-Oct-08 13:57:10.650 [main] DEBUG nextflow.Session - Run name: distracted_banach
-Oct-08 13:57:10.651 [main] DEBUG nextflow.Session - Executor pool size: 8
-Oct-08 13:57:10.660 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-Oct-08 13:57:10.667 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Oct-08 13:57:10.686 [main] DEBUG nextflow.cli.CmdRun - 
+Oct-08 15:27:27.687 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --input tests/samplesheet.csv
+Oct-08 15:27:27.766 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.4
+Oct-08 15:27:27.790 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/masha/.nextflow/plugins; core-plugins: nf-amazon@2.5.3,nf-azure@1.6.1,nf-cloudcache@0.4.1,nf-codecommit@0.2.1,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2-patch1,nf-tower@1.9.1,nf-wave@1.4.2-patch1
+Oct-08 15:27:27.800 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Oct-08 15:27:27.801 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Oct-08 15:27:27.804 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Oct-08 15:27:27.818 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Oct-08 15:27:27.856 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/masha/.nextflow/secrets/store.json
+Oct-08 15:27:27.865 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@73d69c0f] - activable => nextflow.secret.LocalSecretsProvider@73d69c0f
+Oct-08 15:27:27.906 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Oct-08 15:27:27.925 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [big_meninsky] DSL2 - revision: a3bfed8a00
+Oct-08 15:27:27.927 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Oct-08 15:27:27.927 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Oct-08 15:27:27.985 [main] DEBUG nextflow.Session - Session UUID: df4fc345-62cf-47ca-a7a9-c0fd35bf3d45
+Oct-08 15:27:27.985 [main] DEBUG nextflow.Session - Run name: big_meninsky
+Oct-08 15:27:27.986 [main] DEBUG nextflow.Session - Executor pool size: 8
+Oct-08 15:27:27.994 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Oct-08 15:27:28.000 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Oct-08 15:27:28.022 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 24.04.4 build 5917
   Created: 01-08-2024 07:05 UTC (09:05 CEST)
   System: Mac OS X 13.5.1
   Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 20.0.1+9-29
   Encoding: UTF-8 (UTF-8)
-  Process: 40112@mashas-MacBook-Pro.local [127.0.0.1]
-  CPUs: 8 - Mem: 8 GB (62.3 MB) - Swap: 1 GB (320.2 MB)
-Oct-08 13:57:10.701 [main] DEBUG nextflow.Session - Work-dir: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/work [Mac OS X]
-Oct-08 13:57:10.728 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Oct-08 13:57:10.737 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Oct-08 13:57:10.761 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Oct-08 13:57:10.770 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Oct-08 13:57:10.845 [main] DEBUG nextflow.Session - Session start
-Oct-08 13:57:11.424 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Oct-08 13:57:11.441 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/masha/.nextflow/secrets/store.json
-Oct-08 13:57:11.452 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@68dd39d2] - activable => nextflow.secret.LocalSecretsProvider@68dd39d2
-Oct-08 13:57:11.512 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Process: 74493@mashas-MacBook-Pro.local [127.0.0.1]
+  CPUs: 8 - Mem: 8 GB (66.7 MB) - Swap: 1 GB (321.3 MB)
+Oct-08 15:27:28.036 [main] DEBUG nextflow.Session - Work-dir: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/work [Mac OS X]
+Oct-08 15:27:28.053 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Oct-08 15:27:28.062 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Oct-08 15:27:28.086 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Oct-08 15:27:28.095 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Oct-08 15:27:28.176 [main] DEBUG nextflow.Session - Session start
+Oct-08 15:27:28.593 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Oct-08 15:27:29.473 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-validation version: latest
+Oct-08 15:27:30.024 [main] INFO  nextflow.plugin.PluginUpdater - Downloading plugin nf-validation@1.1.4
+Oct-08 15:27:31.388 [main] INFO  org.pf4j.util.FileUtils - Expanded plugin zip 'nf-validation-1.1.4.zip' in 'nf-validation-1.1.4'
+Oct-08 15:27:31.395 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-validation@1.1.4' resolved
+Oct-08 15:27:31.395 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-validation@1.1.4'
+Oct-08 15:27:31.400 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-validation@1.1.4
+Oct-08 15:27:31.401 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [fromSamplesheet:fromSamplesheet]; plugin Id: nf-validation
+Oct-08 15:27:31.441 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `validationSkipDuplicateCheck` -- Initialise it to a default value eg. `params.validationSkipDuplicateCheck = some_value`
+Oct-08 15:27:31.444 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_8c5ab2a06c1905d8: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/../../subworkflows/Trimming/../../modules/nf-core/trimgalore/main.nf
+  Script_10ebbc5a368ded64: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/../../subworkflows/Trimming/main.nf
+  Script_bb4a0557e7b25b12: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/main.nf
+  Script_d7812ee8d90140ec: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/../../subworkflows/fastqc_workflow/main.nf
+  Script_f289bdfe26d7f1cf: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/../../subworkflows/fastqc_workflow/../../modules/nf-core/fastqc/main.nf
   Script_b262b2958e55cfea: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/main.nf
-  Script_dcfb0dd6674709e0: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/./workflows/rnaseq/main.nf
-Oct-08 13:57:11.512 [main] DEBUG nextflow.Session - Session aborted -- Cause: Can't find a matching module file for include: ../modules/nf-core/trimgalore
-Oct-08 13:57:11.521 [main] ERROR nextflow.cli.Launcher - Can't find a matching module file for include: ../modules/nf-core/trimgalore
-java.nio.file.NoSuchFileException: Can't find a matching module file for include: ../modules/nf-core/trimgalore
-	at nextflow.script.IncludeDef.realModulePath(IncludeDef.groovy:182)
-	at nextflow.script.IncludeDef.load0(IncludeDef.groovy:110)
+Oct-08 15:27:31.444 [main] DEBUG nextflow.Session - Session aborted -- Cause: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/nextflow_schema.json
+Oct-08 15:27:31.451 [main] ERROR nextflow.cli.Launcher - /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/nextflow_schema.json
+java.nio.file.NoSuchFileException: /Users/masha/uni/bioinformatik_msc/wiSe_24_25/compworkflows/project/computational_workflows_project/nextflow_schema.json
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:422)
+	at java.base/java.nio.file.Files.newInputStream(Files.java:159)
+	at nextflow.file.SlurperEx.parse(SlurperEx.groovy:45)
+	at nextflow.validation.SchemaValidator.fromSamplesheet(SchemaValidator.groovy:162)
+	at nextflow.validation.SchemaValidator.fromSamplesheet(SchemaValidator.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at nextflow.plugin.extension.ChannelFactoryInstance.invoke0(ChannelFactoryInstance.groovy:68)
+	at nextflow.plugin.extension.ChannelFactoryInstance.invokeExtensionMethod(ChannelFactoryInstance.groovy:82)
+	at nextflow.plugin.extension.PluginExtensionProvider.invokeFactoryExtensionMethod(PluginExtensionProvider.groovy:287)
+	at nextflow.Channel.$static_methodMissing(Channel.groovy:81)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaClassImpl.invokeStaticMissingMethod(MetaClassImpl.java:1639)
+	at groovy.lang.MetaClassImpl.invokeStaticMethod(MetaClassImpl.java:1627)
+	at groovy.lang.DelegatingMetaClass.invokeStaticMethod(DelegatingMetaClass.java:173)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at Script_dcfb0dd6674709e0.runScript(Script_dcfb0dd6674709e0:10)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.script.BaseScript.run0(BaseScript.groovy:159)
-	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.script.BaseScript.run(BaseScript.groovy:209)
-	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:236)
-	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:222)
-	at nextflow.script.IncludeDef.memoizedMethodPriv$loadModule0PathMapSession(IncludeDef.groovy:140)
-	at nextflow.script.IncludeDef.access$0(IncludeDef.groovy)
-	at nextflow.script.IncludeDef$__clinit__closure2.doCall(IncludeDef.groovy)
+	at Script_bb4a0557e7b25b12$_runScript_closure1$_closure2.doCall(Script_bb4a0557e7b25b12:31)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
 	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
@@ -57,16 +81,32 @@ java.nio.file.NoSuchFileException: Can't find a matching module file for include
 	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:279)
 	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
 	at groovy.lang.Closure.call(Closure.java:433)
-	at org.codehaus.groovy.runtime.memoize.Memoize$MemoizeFunction.lambda$call$0(Memoize.java:137)
-	at org.codehaus.groovy.runtime.memoize.ConcurrentCommonCache.getAndPut(ConcurrentCommonCache.java:137)
-	at org.codehaus.groovy.runtime.memoize.ConcurrentCommonCache.getAndPut(ConcurrentCommonCache.java:113)
-	at org.codehaus.groovy.runtime.memoize.Memoize$MemoizeFunction.call(Memoize.java:136)
-	at nextflow.script.IncludeDef.loadModule0(IncludeDef.groovy)
-	at nextflow.script.IncludeDef.load0(IncludeDef.groovy:112)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at nextflow.script.WorkflowDef.run0(WorkflowDef.groovy:204)
+	at nextflow.script.WorkflowDef.run(WorkflowDef.groovy:188)
+	at nextflow.script.BindableDef.invoke_a(BindableDef.groovy:51)
+	at nextflow.script.ComponentDef.invoke_o(ComponentDef.groovy:40)
+	at nextflow.script.WorkflowBinding.invokeMethod(WorkflowBinding.groovy:103)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:651)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeOnDelegationObjects(ClosureMetaClass.java:391)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:330)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at Script_b262b2958e55cfea.runScript(Script_b262b2958e55cfea:3)
+	at Script_b262b2958e55cfea$_runScript_closure1$_closure2.doCall(Script_b262b2958e55cfea:12)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:279)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at nextflow.script.WorkflowDef.run0(WorkflowDef.groovy:204)
+	at nextflow.script.WorkflowDef.run(WorkflowDef.groovy:188)
+	at nextflow.script.BindableDef.invoke_a(BindableDef.groovy:51)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
-	at nextflow.script.BaseScript.run0(BaseScript.groovy:159)
+	at nextflow.script.BaseScript.run0(BaseScript.groovy:198)
 	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
 	at nextflow.script.BaseScript.run(BaseScript.groovy:209)
 	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:236)

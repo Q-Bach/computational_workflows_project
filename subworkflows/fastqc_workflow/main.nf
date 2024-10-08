@@ -1,4 +1,6 @@
-include { FASTQC           } from '../../modules/fastqc/main'
+include { FASTQC           } from '../../modules/nf-core/fastqc/main'
+
+
 
 workflow FASTQ_FASTQC {
     take:
