@@ -7,8 +7,6 @@
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { FASTQC } from '../../modules/nf-core/fastqc/main'
-
 
 //
 // Plug-ins: Installed directly from nf-core/modules
