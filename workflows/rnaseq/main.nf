@@ -1,15 +1,19 @@
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    IMPORT NF-CORE MODULES/SUBWORKFLOWS
+    IMPORT 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { TRIMGALORE } from '../../modules/nf-core/trimgalore/main'
 include { FASTQC } from '../../modules/nf-core/fastqc/main'
 
+
+//
+// Plug-ins: Installed directly from nf-core/modules
+//
+include { samplesheetToList } from 'plugin/nf-schema' //used to read the sample sheet
 
 workflow RNASEQ {
 
