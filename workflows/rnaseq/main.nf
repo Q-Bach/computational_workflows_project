@@ -17,7 +17,7 @@ include { FASTQ_FASTQC } from '../../subworkflows/fastqc_workflow'
 //
 // PLUGINS: Installed directly from nf-core/modules
 //
-include { samplesheetToList } from 'plugin/nf-schema' //used to read the sample sheet
+include { fromSamplesheet } from 'plugin/nf-validation' //used to read the sample sheet
 
 workflow RNASEQ {
 
