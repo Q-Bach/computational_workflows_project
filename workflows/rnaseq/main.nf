@@ -12,7 +12,7 @@
 // SUBWORKFLOWS:
 //
 include { Trimming } from '../../subworkflows/Trimming'
-include { FastQC } from '../../subworkflows/fastqc_workflow'
+include { FASTQ_FASTQC } from '../../subworkflows/fastqc_workflow'
 
 //
 // PLUGINS: Installed directly from nf-core/modules
@@ -44,6 +44,11 @@ workflow RNASEQ {
         .view()
 
     //TODO 2: FASTQC
+
+    FASTQ_FASTQC(ch_fastq)
+
+    ch_fastqc_html = FASTQ_FASTQC.out.fastqc_html
+    ch_fastqc_zip = FASTQ_FASTQC.out.fastqc_zip
 
     //TODO 3: TRIMGALORE to trim the reads
     
