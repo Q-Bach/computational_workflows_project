@@ -7,8 +7,8 @@
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { TRIMGALORE } from '../modules/nf-core/trimgalore/main'
-include { FASTQC } from '../modules/nf-core/fastqc/main'
+include { TRIMGALORE } from '../../modules/nf-core/trimgalore/main'
+include { FASTQC } from '../../modules/nf-core/fastqc/main'
 
 
 workflow RNASEQ {
