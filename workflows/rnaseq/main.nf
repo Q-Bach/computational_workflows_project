@@ -7,13 +7,13 @@
 //
 // MODULE: Installed directly from nf-core/modules
 //
-include { TRIMGALORE } from '../modules/nf-core/trimgalore/main'       
-include { FASTQC } from '../modules/nf-core/fastqc/main'       
+include { TRIMGALORE } from '../modules/nf-core/trimgalore/main'
+include { FASTQC } from '../modules/nf-core/fastqc/main'
 
 
-workflow rna-seq {
+workflow RNASEQ {
 
-    //TODO 1: Read in the samplesheet 
+    //TODO 1: Read in the samplesheet
 
     //TODO 2: FASTQC
 
