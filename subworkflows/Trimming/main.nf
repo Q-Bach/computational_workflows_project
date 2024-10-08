@@ -18,7 +18,7 @@ workflow Trimming {
     trim_log        = Channel.empty()
     trim_read_count = Channel.empty()
 
-    TRIMGALORE (umi_reads)
+    TRIMGALORE (reads)
         trim_unpaired = TRIMGALORE.out.unpaired
         trim_html     = TRIMGALORE.out.html
         trim_zip      = TRIMGALORE.out.zip
