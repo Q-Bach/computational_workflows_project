@@ -1,4 +1,4 @@
-include { FASTQC           } from '../../modules/nf-core/fastqc/main'
+include { FASTQC           } from '../../modules/nf-core/fastqc/main2'
 
 
 
@@ -11,6 +11,10 @@ workflow FASTQ_FASTQC {
     ch_versions = Channel.empty()
     fastqc_html = Channel.empty()
     fastqc_zip  = Channel.empty()
+
+    reads.view()
+
+
     FASTQC (reads)
         fastqc_html = FASTQC.out.html
         fastqc_zip  = FASTQC.out.zip

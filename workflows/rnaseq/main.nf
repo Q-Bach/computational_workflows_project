@@ -17,7 +17,6 @@ include { FASTQ_FASTQC } from '../../subworkflows/fastqc_workflow'
 //
 // PLUGINS: Installed directly from nf-core/modules
 //
-include { fromSamplesheet } from 'plugin/nf-validation' //used to read the sample sheet
 
 workflow RNASEQ {
 
@@ -27,21 +26,20 @@ workflow RNASEQ {
     main:
     // Read in the samplesheet
 
-    ch_fastq = channel
-        .fromSamplesheet("input")
-        .map {
-            meta, fastq_1, fastq_2 ->
-                if (!fastq_2) {
-                    return [ meta.id, meta + [ single_end:true ], [ fastq_1 ] ]
-                } else {
-                    return [ meta.id, meta + [ single_end:false ], [ fastq_1, fastq_2 ] ]
-                }
+    ch_fastq = ch_samplesheet
+        .splitCsv(header: true)
+        .map { row -> 
+        if (row.fastq_2) {
+            [["single_end": false, "sample" : row.sample, "strandedness": row.strandedness], [file(row.fastq_1), file(row.fastq_2)]]
+        } else {
+            [["single_end": true, "sample" : row.sample, "strandedness": row.strandedness], [file(row.fastq_1)]]
         }
-        .groupTuple()
-        .map {
-            checkSamplesAfterGrouping(it)
         }
         .view()
+
+        /* .map {
+            checkSamplesAfterGrouping(it)
+        } */
 
     //TODO 2: FASTQC
 
