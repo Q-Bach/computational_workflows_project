@@ -24,26 +24,28 @@ process HISAT2_BUILD {
 
     script:
     def args = task.ext.args ?: ''
-    def avail_mem = 0
+    /*
+    def avail_mem = 8
     if (!task.memory) {
         log.info "[HISAT2 index build] Available memory not known - defaulting to 0. Specify process memory requirements to change this."
     } else {
         log.info "[HISAT2 index build] Available memory: ${task.memory}"
         avail_mem = task.memory.toGiga()
     }
+    */
 
     def ss = ''
     def exon = ''
     def extract_exons = ''
     def hisat2_build_memory = params.hisat2_build_memory ? (params.hisat2_build_memory as nextflow.util.MemoryUnit).toGiga() : 0
-    if (avail_mem >= hisat2_build_memory) {
+    /* if (avail_mem >= hisat2_build_memory) {
         log.info "[HISAT2 index build] At least ${hisat2_build_memory} GB available, so using splice sites and exons to build HISAT2 index"
         extract_exons = gtf ? "hisat2_extract_exons.py $gtf > ${gtf.baseName}.exons.txt" : ""
         exon = gtf ? "--exon ${gtf.baseName}.exons.txt" : ""
     } else {
         log.info "[HISAT2 index build] Less than ${hisat2_build_memory} GB available, so NOT using splice sites and exons to build HISAT2 index."
         log.info "[HISAT2 index build] Use --hisat2_build_memory [small number] to skip this check."
-    }
+    } */
     """
     mkdir hisat2
     $extract_exons

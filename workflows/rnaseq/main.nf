@@ -103,14 +103,13 @@ workflow RNASEQ {
     -------------------------
     */
 
-    ch_fasta.view()
-    ch_gtf.view()
-
     ch_hisat2_index = HISAT2_BUILD (
         ch_fasta.map { [ [:], it ] },
         ch_gtf.map { [ [:], it ] },
         ch_threads,
         ch_ram)
+    
+    ch_hisat2_index.first().view()
 
     /* HISAT2_ALIGN ( ch_fastq, index, splicesites )
     ch_hisat2_summary = HISAT2_ALIGN.out.summary.view()
