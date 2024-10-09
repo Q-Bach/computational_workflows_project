@@ -14,77 +14,50 @@ tools:
       homepage: https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/
       documentation: https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md
       licence: ["GPL-3.0-or-later"]
-      identifier: ""
 input:
-  - - meta:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. [ id:'test', single_end:false ]
-    - reads:
-        type: file
-        description: |
-          List of input FastQ files of size 1 and 2 for single-end and paired-end data,
-          respectively.
-output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - reads:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*{3prime,5prime,trimmed,val}*.fq.gz":
-          type: file
-          description: |
-            List of input adapter trimmed FastQ files of size 1 and 2 for
-            single-end and paired-end data, respectively.
-          pattern: "*{3prime,5prime,trimmed,val}*.fq.gz"
-  - log:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*report.txt":
-          type: file
-          description: Trim Galore! trimming report
-          pattern: "*_{report.txt}"
+      type: file
+      description: |
+        List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+        respectively.
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - reads:
+      type: file
+      description: |
+        List of input adapter trimmed FastQ files of size 1 and 2 for
+        single-end and paired-end data, respectively.
+      pattern: "*{3prime,5prime,trimmed,val}*.fq.gz"
   - unpaired:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*unpaired*.fq.gz":
-          type: file
-          description: |
-            FastQ files containing unpaired reads from read 1 or read 2
-          pattern: "*unpaired*.fq.gz"
+      type: file
+      description: |
+        FastQ files containing unpaired reads from read 1 or read 2
+      pattern: "*unpaired*.fq.gz"
   - html:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.html":
-          type: file
-          description: FastQC report (optional)
-          pattern: "*_{fastqc.html}"
+      type: file
+      description: FastQC report (optional)
+      pattern: "*_{fastqc.html}"
   - zip:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.zip":
-          type: file
-          description: FastQC report archive (optional)
-          pattern: "*_{fastqc.zip}"
+      type: file
+      description: FastQC report archive (optional)
+      pattern: "*_{fastqc.zip}"
+  - log:
+      type: file
+      description: Trim Galore! trimming report
+      pattern: "*_{report.txt}"
   - versions:
-      - versions.yml:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
 authors:
   - "@drpatelh"
   - "@ewels"

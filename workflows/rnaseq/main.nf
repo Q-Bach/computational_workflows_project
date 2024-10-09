@@ -7,25 +7,51 @@
 //
 // MODULE: Installed directly from nf-core/modules
 //
+include { FASTQC           } from '../../modules/nf-core/fastqc/main'
+include { TRIMGALORE } from '../../modules/nf-core/trimgalore/main'
+include { HISAT2_ALIGN } from '../../modules/nf-core/hisat2/align/main'
+include { HISAT2_BUILD} from '../../modules/nf-core/hisat2/build/main'
 
-//
-// SUBWORKFLOWS:
-//
-include { Trimming } from '../../subworkflows/Trimming'
-include { FASTQ_FASTQC } from '../../subworkflows/fastqc_workflow'
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    SUBWORKFLOWS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
 
-//
-// PLUGINS: Installed directly from nf-core/modules
-//
+/*
+------------------------------------------------------------
+   MAIN WORKFLOW
+-------------------------------------------------------------
+*/
+
 
 workflow RNASEQ {
 
     take:
     ch_samplesheet
+    ch_outfolder
+    ch_fasta
+    ch_gtf
+    ch_threads
+    ch_ram
 
     main:
-    // Read in the samplesheet
 
+    /* 
+    -----------------
+      VERSIONS
+    -----------------
+    */
+
+    ch_versions = channel.empty()
+
+    /* 
+    -----------------
+      SAMPLESHEET
+    -----------------
+    */
+
+    // Read in the samplesheet
     ch_fastq = ch_samplesheet
         .splitCsv(header: true)
         .map { row -> 
@@ -35,22 +61,61 @@ workflow RNASEQ {
             [["single_end": true, "sample" : row.sample, "strandedness": row.strandedness], [file(row.fastq_1)]]
         }
         }
-        .view()
+        
 
-        /* .map {
-            checkSamplesAfterGrouping(it)
-        } */
+    /* 
+    -----------------
+      FASTQC
+    -----------------
+    */
+    FASTQC(ch_fastq)
 
-    //TODO 2: FASTQC
+    ch_fastqc_html = FASTQC.out.html
+    ch_fastqc_zip = FASTQC.out.zip
 
-    FASTQ_FASTQC(ch_fastq)
+    ch_fastqc_html.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/fastqc")
+    ch_fastqc_zip.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/fastqc")
 
-    ch_fastqc_html = FASTQ_FASTQC.out.fastqc_html
-    ch_fastqc_zip = FASTQ_FASTQC.out.fastqc_zip
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
-    //TODO 3: TRIMGALORE to trim the reads
+
+    /* 
+    -------------------------
+      TRIMMING W/ TRIMGALORE
+    -------------------------
+    */
+
     
+    TRIMGALORE (ch_fastq)
 
-    //TODO 4: ALIGNING THE READS
+    ch_trim_reads       = TRIMGALORE.out.reads
+    /* ch_trim_unpaired    = TRIMGALORE.out.unpaired
+    ch_trim_html        = TRIMGALORE.out.html
+    ch_trim_zip         = TRIMGALORE.out.zip
+    ch_trim_log         = TRIMGALORE.out.log */
+    
+    ch_versions         = ch_versions.mix(TRIMGALORE.out.versions.first())
+    ch_trim_reads.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/trimgalore")
+   
+    /* 
+    -------------------------
+      ALIGNING W/ HISAT2
+    -------------------------
+    */
+
+    ch_fasta.view()
+    ch_gtf.view()
+
+    ch_hisat2_index = HISAT2_BUILD (
+        ch_fasta.map { [ [:], it ] },
+        ch_gtf.map { [ [:], it ] },
+        ch_threads,
+        ch_ram)
+
+    /* HISAT2_ALIGN ( ch_fastq, index, splicesites )
+    ch_hisat2_summary = HISAT2_ALIGN.out.summary.view()
+    ch_versions = ch_versions.mix(HISAT2_ALIGN.out.versions.first()) */
+
+    
 
 }

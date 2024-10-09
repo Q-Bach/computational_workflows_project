@@ -1,11 +1,11 @@
 process TRIMGALORE {
-    tag "$meta.id"
+    tag "$meta.sample"
     label 'process_high'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/trim-galore:0.6.7--hdfd78af_0' :
-        'biocontainers/trim-galore:0.6.7--hdfd78af_0' }"
+        'quay.io/biocontainers/trim-galore:0.6.7--hdfd78af_0' }"
 
     input:
     tuple val(meta), path(reads)
@@ -35,7 +35,7 @@ process TRIMGALORE {
     }
 
     // Added soft-links to original fastqs for consistent naming in MultiQC
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.sample}"
     if (meta.single_end) {
         def args_list = args.split("\\s(?=--)").toList()
         args_list.removeAll { it.toLowerCase().contains('_r2 ') }
@@ -74,7 +74,7 @@ process TRIMGALORE {
     }
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.sample}"
     if (meta.single_end) {
         output_command = "echo '' | gzip > ${prefix}_trimmed.fq.gz ;"
         output_command += "touch ${prefix}.fastq.gz_trimming_report.txt"
