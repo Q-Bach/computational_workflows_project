@@ -13,12 +13,6 @@ include { HISAT2_ALIGN } from '../../modules/nf-core/hisat2/align/main'
 include { HISAT2_BUILD} from '../../modules/nf-core/hisat2/build/main'
 
 /*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    SUBWORKFLOWS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
-/*
 ------------------------------------------------------------
    MAIN WORKFLOW
 -------------------------------------------------------------
@@ -68,16 +62,20 @@ workflow RNASEQ {
       FASTQC
     -----------------
     */
+
+    // call the fastqc module from nf-core
     FASTQC(ch_fastq)
 
+    // access the output 
     ch_fastqc_html = FASTQC.out.html
     ch_fastqc_zip = FASTQC.out.zip
+    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
+    // collect the output files
     ch_fastqc_html.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/fastqc")
     ch_fastqc_zip.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/fastqc")
 
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
-
+  
 
     /* 
     -------------------------
@@ -85,36 +83,61 @@ workflow RNASEQ {
     -------------------------
     */
 
-    
+    // call the trimgalore module from nf-core
     TRIMGALORE (ch_fastq)
 
+    // access the output from trimgalore 
     ch_trim_reads       = TRIMGALORE.out.reads
-    /* ch_trim_unpaired    = TRIMGALORE.out.unpaired
+    ch_trim_unpaired    = TRIMGALORE.out.unpaired
     ch_trim_html        = TRIMGALORE.out.html
     ch_trim_zip         = TRIMGALORE.out.zip
-    ch_trim_log         = TRIMGALORE.out.log */
+    ch_trim_log         = TRIMGALORE.out.log
     
     ch_versions         = ch_versions.mix(TRIMGALORE.out.versions.first())
+
+    // collect the files 
     ch_trim_reads.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/trimgalore")
+    ch_trim_html.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/trimgalore")
+    ch_trim_zip.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/trimgalore")
+    ch_trim_log.map( item -> item.last() ).flatten().collectFile(storeDir:"$ch_outfolder/trimgalore")
    
     /* 
     -------------------------
       ALIGNING W/ HISAT2
     -------------------------
     */
+    
+    // build index for hisat2 align (necessary input) by calling HISAT2_BUILD module from nf-core
 
-    ch_hisat2_index = HISAT2_BUILD (
+    HISAT2_BUILD (
         ch_fasta.map { [ [:], it ] },
         ch_gtf.map { [ [:], it ] },
         ch_threads,
         ch_ram)
+
+    // access output of Hisat2_build
+    ch_hisat2_index = HISAT2_BUILD.out.index
+    ch_versions     = ch_versions.mix(HISAT2_BUILD.out.versions.first())
+
+    // align trimmed reads with HISAT2 by calling hisat2_align module from nf-core
+    HISAT2_ALIGN ( ch_trim_reads, ch_hisat2_index)
     
-    ch_hisat2_index.first().view()
+    // access the output of hisat2_align
+    ch_hisat2_bam = HISAT2_ALIGN.out.bam
+    ch_hisat2_summary = HISAT2_ALIGN.out.summary
+    ch_versions = ch_versions.mix(HISAT2_ALIGN.out.versions.first()) 
 
-    /* HISAT2_ALIGN ( ch_fastq, index, splicesites )
-    ch_hisat2_summary = HISAT2_ALIGN.out.summary.view()
-    ch_versions = ch_versions.mix(HISAT2_ALIGN.out.versions.first()) */
+    // collect files
+    ch_hisat2_bam.map( item -> item.last() ).collectFile(storeDir:"$ch_outfolder/hisat2")
+    ch_hisat2_summary.map( item -> item.last() ).collectFile(storeDir: "$ch_outfolder/hisat2")
 
-    
+     /* 
+    -------------------------
+      VERSIONS
+    -------------------------
+    */
 
+    // save the versions in a file
+    ch_versions.collectFile(storeDir: "$ch_outfolder/versions")
+  
 }
