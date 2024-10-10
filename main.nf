@@ -8,8 +8,9 @@ workflow {
     main:
     // read in samplesheet
     ch_samplesheet = Channel.value(file(params.input, checkIfExists: true))
-    // read in path to fasta and gtf file
+    // read in path to fasta, transcripts fasta and gtf file
     ch_fasta = Channel.value(file(params.fasta, checkIfExists: true))
+    ch_transcripts = Channel.value(file(params.transcripts, checkIfExists: true))
     ch_gtf = Channel.value(file(params.gtf, checkIfExists: true))
     // read in parameters for available threads and ram
     ch_threads = Channel.value(params.threads)
@@ -20,6 +21,7 @@ workflow {
         ch_samplesheet,
         params.outdir,
         ch_fasta,
+        ch_transcripts,
         ch_gtf,
         ch_threads,
         ch_ram
