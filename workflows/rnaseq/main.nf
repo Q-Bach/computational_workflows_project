@@ -143,14 +143,6 @@ workflow RNASEQ {
     ch_featurecounts_summary  = SUBREAD_FEATURECOUNTS.out.summary.map(item -> item.last()).collectFile(storeDir: "$ch_outfolder/counts")
     ch_versions = ch_versions.mix(SUBREAD_FEATURECOUNTS.out.versions.first())
 
-    /* 
-    ------------------------------
-      GENERATE PLOT USING PYTHON
-    ------------------------------
-    */
-
-    // GENERATE_FEATURECOUNT_PLOT()
-
      /* 
     ------------
       VERSIONS

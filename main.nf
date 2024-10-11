@@ -2,7 +2,6 @@
 
 
 include { RNASEQ } from "./workflows/rnaseq/main"
-include { TEST } from "./workflows/rnaseq/main_test"
 
 workflow {
 
@@ -26,5 +25,4 @@ main:
         ch_ram
         )
 
-    //TEST()
 }

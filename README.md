@@ -51,7 +51,7 @@ SRR23195511_oxy_sham,./tests/data/reduced_SRX19144488_SRR23195511_1.fastq.gz,./t
 `-profile` profile to run the pipeline with.
 
 #### Example run
-Exemplary command to run the pipeline with the included test files in the [tests](tests/) directory. The fna and the gtf file have to be extracted first (they were compressed for the upload to GitHub).
+Exemplary command to run the pipeline with the included test files in the [tests](tests/) directory. The reference genome files (fasta and gtf) had to be excluded from the github repo, since they are too large. The files can be downloaded from [NCBI](https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001635.27/) and have to be extracted.
 
 ```bash
 nextflow run main.nf\
