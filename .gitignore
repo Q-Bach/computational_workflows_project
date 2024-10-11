@@ -1,4 +1,6 @@
 work/
 .nextflow/
 .nextflow.log*
+
+tests/transcripts.fa
 out/

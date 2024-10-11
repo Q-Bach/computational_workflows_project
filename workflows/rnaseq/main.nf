@@ -11,6 +11,8 @@ include { FASTQC           } from '../../modules/nf-core/fastqc/main'
 include { TRIMGALORE } from '../../modules/nf-core/trimgalore/main'
 include { HISAT2_ALIGN } from '../../modules/nf-core/hisat2/align/main'
 include { HISAT2_BUILD} from '../../modules/nf-core/hisat2/build/main'
+include { SALMON_INDEX} from '../../modules/nf-core/salmon/index/main'
+include { SALMON_QUANT} from '../../modules/nf-core/salmon/quant/main'
 
 /*
 ------------------------------------------------------------
@@ -25,6 +27,7 @@ workflow RNASEQ {
     ch_samplesheet
     ch_outfolder
     ch_fasta
+    ch_transcripts
     ch_gtf
     ch_threads
     ch_ram
@@ -130,6 +133,19 @@ workflow RNASEQ {
     // collect files
     ch_hisat2_bam.map( item -> item.last() ).collectFile(storeDir:"$ch_outfolder/hisat2")
     ch_hisat2_summary.map( item -> item.last() ).collectFile(storeDir: "$ch_outfolder/hisat2")
+
+    /* 
+    -------------------------
+      READ COUNT W/ SALMON
+    -------------------------
+    */
+
+    /* SALMON_INDEX (ch_fasta, ch_transcripts)
+      ch_salmon_index = SALMON_INDEX.out.index
+
+    SALMON_QUANT (ch_fastq, ch_salmon_index, ch_gtf, ch_alignment)
+      ch_salmon_results = SALMON_QUANT.out.results
+      ch_salmon_results.view() */
 
      /* 
     -------------------------
