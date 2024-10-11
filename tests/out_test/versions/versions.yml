@@ -1,0 +1,14 @@
+"RNASEQ:HISAT2_BUILD":
+    hisat2: 2.2.1
+"RNASEQ:SUBREAD_FEATURECOUNTS":
+    subread: 2.0.1
+"RNASEQ:SAMTOOLS_SORT":
+    samtools: 1.20 
+"RNASEQ:FASTQC":
+    fastqc: 0.12.1
+"RNASEQ:HISAT2_ALIGN":
+    hisat2: 2.2.1
+    samtools: 1.16.1 
+"RNASEQ:TRIMGALORE":
+    trimgalore: 0.6.7 
+    cutadapt: 3.4

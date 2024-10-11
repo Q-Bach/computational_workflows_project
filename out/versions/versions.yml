@@ -1,5 +1,0 @@
-"RNASEQ:TRIMGALORE":
-    trimgalore: 0.6.7 
-    cutadapt: 3.4
-"RNASEQ:FASTQC":
-    fastqc: 0.12.1
